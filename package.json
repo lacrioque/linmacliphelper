@@ -1,0 +1,34 @@
+{
+  "name": "linmacliphelper",
+  "version": "0.0.1",
+  "description": "a small nwjs program to help managing the clipboard",
+  "main": "index.html",
+  "window": {
+    "title": "linmacliphelper",
+    "toolbar": true,
+    "frame": true,
+    "width": 1000,
+    "height": 500,
+    "position": "mouse",
+    "min_width": 995,
+    "min_height": 200
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lacrioque/linmacliphelper.git"
+  },
+  "author": "Markus Flür",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lacrioque/linmacliphelper/issues"
+  },
+  "homepage": "https://github.com/lacrioque/linmacliphelper#readme",
+  "dependencies": {
+    "copy-paste": "^1.1.3",
+    "mustache": "^2.1.3",
+    "underscore": "^1.8.3"
+  }
+}
