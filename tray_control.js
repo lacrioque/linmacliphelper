@@ -1,11 +1,13 @@
-var newSetViaTray = function(){
+var newSetViaTray = function(callback){
+        if(callback===undefined){
+            callback = function(){return true;}
+        }
           setNewClipItem();
           openConfirmation('save');
+          callback();
     },
     openWindowResetTray = function(){
                                 win.show();
-                                tray.remove();
-                                tray = null;
     },
     showAllSavedClips = function(){
         var clips = [], item;
@@ -42,22 +44,16 @@ var newSetViaTray = function(){
     },
     closeCompletely = function(){
         gui.App.closeAllWindows();
-    };
-
-win.on('minimize', function() {
-      // Hide window
-      this.hide();
-    
-      // Show tray
-      tray = new gui.Tray({ icon: '/css/icon.png' });
-    
-        var menu = new gui.Menu(),
-            submenu = new gui.Menu(),
-            clippers = showAllSavedClips();
+    },
+    loadMenu = function(){
+    var menu = new gui.Menu(),
+        submenu = new gui.Menu(),
+        clippers = showAllSavedClips();
+        
         menu.append(new gui.MenuItem({ 
             type: 'normal', 
             label: 'Clip speichern',
-            click: newSetViaTray
+            click: function(){newSetViaTray(reloadMenue);}
         }));
          menu.append(new gui.MenuItem({ 
             type: 'normal', 
@@ -78,7 +74,24 @@ win.on('minimize', function() {
             type: 'normal', 
             label: 'Schließen',
             click: closeCompletely
-        }));           
-        tray.menu = menu;
+        }));  
+        return menu;
+    },
+    reloadMenue = function(){
+        tray.menu = loadMenu();
+    };
 
+win.on('loaded', function(){
+      tray = new gui.Tray({ icon: '/css/icon.png' });
+        tray.menu = loadMenu();
+        tray.on('click', function(){
+            newSetViaTray(reloadMenue);
+        });
+});
+
+
+win.on('minimize', function() {
+      // Hide window
+      this.hide();
+      // Show tray
     });

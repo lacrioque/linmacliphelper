@@ -1,5 +1,6 @@
 var _ = require('underscore'),
     gui = require('nw.gui'),
+    os = require('os'),
     clipboard = gui.Clipboard.get(),
     win = gui.Window.get(),
     tray = null,
@@ -8,6 +9,7 @@ var _ = require('underscore'),
     usedNumbers = [],    
     nummer_aktuell,
     savedClips = {},
+    controlKey = process.platform == "darwin" ? "Meta" : "Ctrl",
     getClipdata = function(){
         var retval =  clipboard.get('text');
         if(retval === '---'){
