@@ -1,10 +1,7 @@
-var newSetViaTray = function(callback){
-        if(callback===undefined){
-            callback = function(){return true;}
-        }
+var newSetViaTray = function(){
           setNewClipItem();
           openConfirmation('save');
-          callback();
+          reloadMenue();
     },
     openWindowResetTray = function(){
                                 win.show();
@@ -32,7 +29,7 @@ var newSetViaTray = function(callback){
             'frame': false,
             'toolbar': false,
             'width': 240,
-            'height': 100,
+            'height': 60,
             'position': "center",
             "window": {
                 "resizable": false,
@@ -40,10 +37,10 @@ var newSetViaTray = function(callback){
                 'show_in_taskbar': false
               }
           }),
-		  x = (screen.bounds.width-280), y = (10);
-		  new_win.moveTo(x, y)
+		  x = (screen.bounds.width-250), y = (5);
+		  new_win.moveTo(x, y);
           new_win.on('close',function(){this.hide();});
-          setTimeout(function(){new_win.close(true);}, 3500);
+          setTimeout(function(){new_win.close(true);}, 2500);
     },
     closeCompletely = function(){
         gui.App.closeAllWindows();
@@ -56,7 +53,7 @@ var newSetViaTray = function(callback){
         menu.append(new gui.MenuItem({ 
             type: 'normal', 
             label: 'Clip speichern',
-            click: function(){newSetViaTray(reloadMenue);}
+            click: function(){newSetViaTray();}
         }));
          menu.append(new gui.MenuItem({ 
             type: 'normal', 
@@ -88,7 +85,7 @@ win.on('loaded', function(){
       tray = new gui.Tray({ icon: '/css/icon.png' });
         tray.menu = loadMenu();
         tray.on('click', function(){
-            newSetViaTray(reloadMenue);
+            newSetViaTray();
         });
 });
 
