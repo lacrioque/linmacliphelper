@@ -5,9 +5,7 @@
     "inject-js-end": "", 
     "node-remote": "", 
     "keywords": [], 
-
     "devDependencies": {}, 
-
     "author": "Markus Fl\u00fcr", 
     "user-agent": "", 
     "window": {

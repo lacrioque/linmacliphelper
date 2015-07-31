@@ -23,7 +23,7 @@ shortcut_global.add(controlKey+"+Alt+c", function(){
 }, {});
 
 shortcut_global.add(controlKey+"+Alt+v", function(){
-    setNewClipItem();
+    newSetViaTray();
 }, {});
 
 shortcut.add(controlKey+"+Shift+X",function() {

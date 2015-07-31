@@ -76,4 +76,4 @@ var _ = require('underscore'),
     getClipItemData = function(nummer){
         setClipdata(savedClips[nummer]);
     };
-
+gui.Screen.Init();

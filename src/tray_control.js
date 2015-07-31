@@ -27,18 +27,21 @@ var newSetViaTray = function(callback){
         
     },
     openConfirmation = function(type){
+		var screen = gui.Screen.screens[0],
             new_win = gui.Window.open('confirm.html#'+type+'#'+nummer_aktuell,{
             'frame': false,
             'toolbar': false,
             'width': 240,
-            'height': 100,
-            'position': "mouse",
+            'height': 60,
+            'position': "center",
             "window": {
                 "resizable": false,
                 'always-on-top': true,
                 'show_in_taskbar': false
               }
-          });
+          }),
+		  x = (screen.bounds.width-280), y = (10);
+		  new_win.moveTo(x, y).focus();
           new_win.on('close',function(){this.hide();});
           setTimeout(function(){new_win.close(true);}, 3500);
     },
